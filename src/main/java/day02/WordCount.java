@@ -20,6 +20,7 @@ public class WordCount {
         private Text word = new Text();
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+            // value.toString()直接就能转化为String
             StringTokenizer itr = new StringTokenizer(value.toString());
             while (itr.hasMoreTokens()) {
                 word.set(itr.nextToken());
@@ -51,8 +52,8 @@ public class WordCount {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
-        FileInputFormat.addInputPath(job, new Path(args[0]));
-        FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        FileInputFormat.addInputPath(job, new Path("/Users/liuli/input/bbb"));
+        FileOutputFormat.setOutputPath(job, new Path("/Users/liuli/output"));
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
 
