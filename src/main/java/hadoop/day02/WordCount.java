@@ -1,4 +1,4 @@
-package day02;
+package hadoop.day02;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -18,6 +18,7 @@ public class WordCount {
 
         private final static IntWritable one = new IntWritable(1);
         private Text word = new Text();
+
 
         public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
             // value.toString()直接就能转化为String
@@ -52,7 +53,9 @@ public class WordCount {
         job.setOutputKeyClass(Text.class);
         job.setOutputValueClass(IntWritable.class);
 
-        FileInputFormat.addInputPath(job, new Path("/Users/liuli/input/bbb"));
+
+
+        FileInputFormat.addInputPath(job, new Path("/Users/liuli/input"));
         FileOutputFormat.setOutputPath(job, new Path("/Users/liuli/output"));
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }
